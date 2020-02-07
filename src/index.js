@@ -5,15 +5,15 @@ import {PersistGate} from 'redux-persist/integration/react';
 import './config/ReactotronConfig';
 import 'react-native-gesture-handler';
 
-import Routes from './routes';
+import App from './App';
 import {store, persistor} from './store';
 
-export default function App() {
+export default function Index() {
     return (
         <Provider store={store}>
             <PersistGate persistor={persistor}>
                 <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
-                <Routes />
+                <App />
             </PersistGate>
         </Provider>
     );
