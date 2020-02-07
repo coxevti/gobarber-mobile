@@ -31,7 +31,6 @@ export function* signUp({payload}) {
             name,
             email,
             password,
-            provider: true,
         });
         Alert.alert('Sucesso', 'Cadastro efetuado com sucesso!');
     } catch (error) {

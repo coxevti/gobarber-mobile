@@ -1,5 +1,8 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {Image} from 'react-native';
+import {useDispatch} from 'react-redux';
+
+import {signUpRequest} from '~/store/modules/auth/actions';
 
 import Background from '~/components/Background';
 
@@ -18,7 +21,15 @@ export default function SignUp({navigation}) {
     const emailRef = useRef();
     const passwordRef = useRef();
 
-    function handleSubmit() {}
+    const dispatch = useDispatch();
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    function handleSubmit() {
+        dispatch(signUpRequest(name, email, password));
+    }
 
     return (
         <Background>
@@ -30,16 +41,20 @@ export default function SignUp({navigation}) {
                         placeholder="Nome completo"
                         returnKeyType="next"
                         onSubmitEditing={() => emailRef.current.focus()}
+                        value={name}
+                        onChangeText={setName}
                     />
                     <FormInput
                         icon="mail-outline"
                         keyboardType="email-address"
                         autoCorrect={false}
-                        autoCapitaliza="none"
+                        autoCapitalize="none"
                         placeholder="Digite seu e-mail"
                         returnKeyType="next"
                         onSubmitEditing={() => passwordRef.current.focus()}
                         ref={emailRef}
+                        value={email}
+                        onChangeText={setEmail}
                     />
                     <FormInput
                         icon="lock-outline"
@@ -48,6 +63,8 @@ export default function SignUp({navigation}) {
                         returnKeyType="send"
                         onSubmitEditing={handleSubmit}
                         ref={passwordRef}
+                        value={password}
+                        onChangeText={setPassword}
                     />
                     <SubmitButton onPress={handleSubmit}>
                         Cadastrar
