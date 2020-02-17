@@ -44,7 +44,7 @@ export default function SelectDateTime({navigation}) {
                     renderItem={({item}) => (
                         <Hour
                             enabled={item.available}
-                            onPress={() => handleSelectHour(item.value)}>
+                            onPress={() => handleSelectHour(item.date)}>
                             <Title>{item.time}</Title>
                         </Hour>
                     )}
